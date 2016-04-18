@@ -9,10 +9,11 @@ gem 'pg', '~> 0.18.4'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5.x'
 gem 'jbuilder', '~> 2.0'
+gem 'devise', '~> 4.0.0.rc2'
 
 group :development, :test do
   gem 'rspec-rails', '3.5.0.beta3'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', '~> 4.7.0'
   gem 'spring-commands-rspec'
   gem 'byebug'
 end
