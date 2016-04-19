@@ -11,10 +11,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160418075612) do
+ActiveRecord::Schema.define(version: 20160419123127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "reports", force: :cascade do |t|
+    t.datetime "taken_at"
+    t.string   "site_reference"
+    t.string   "site_id"
+    t.string   "visit_id"
+    t.integer  "humiditiy"
+    t.integer  "canopy"
+    t.integer  "flowers"
+    t.integer  "bp"
+    t.boolean  "harvesting"
+    t.boolean  "drying"
+    t.boolean  "fertilizer"
+    t.boolean  "wilt"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "trees", force: :cascade do |t|
+    t.integer  "tiny"
+    t.integer  "small"
+    t.integer  "large"
+    t.integer  "mature"
+    t.integer  "ripe"
+    t.integer  "damaged"
+    t.integer  "blackpod"
+    t.integer  "report_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "trees", ["report_id"], name: "index_trees_on_report_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
