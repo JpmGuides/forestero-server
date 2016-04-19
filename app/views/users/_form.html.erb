@@ -1,0 +1,29 @@
+<%= form_for(@user, html: { class: 'form-horizontal' }) do |f| %>
+  <div class="form-group">
+    <%= f.label :email, class: 'col-sm-4 control-label' %>
+    <div class="col-sm-8">
+      <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password, class: 'col-sm-4 control-label' %>
+    <div class="col-sm-8">
+      <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password'%>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password_confirmation, class: 'col-sm-4 control-label' %>
+    <div class="col-sm-8">
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'Password Confirmation'%>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-8">
+      <%= f.submit class: 'btn btn-success' %>
+      <%= link_to 'Back', :back, class: "btn btn-warning" %>
+    </div>
+  </div>
+<% end %>

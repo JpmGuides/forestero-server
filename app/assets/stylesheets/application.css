@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+
+h1.title {
+  display: inline-block;
+}
+
+a.add-button {
+  float: right;
+  margin-top: 30px;
+}
