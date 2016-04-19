@@ -26,3 +26,4 @@
 # rspec tmp and color
 .rspec
 /spec/tmp
+/spec/examples.txt
