@@ -7,7 +7,8 @@
   <table class="table table-striped table-bordered">
     <thead>
       <tr>
-        <th>date</th>
+        <th>report date</th>
+        <th>creation date</th>
         <th>Site reference</th>
         <th>humidity</th>
         <th>canopy</th>
@@ -25,7 +26,8 @@
     <tbody>
       <% @reports.each do |report| %>
         <tr>
-          <td><%= report.taken_at.to_date %></td>
+          <td><%= report.taken_at.to_date.strftime('%d.%m.%Y') %></td>
+          <td><%= report.created_at.in_time_zone('CET').strftime('%d.%m.%Y %H:%M:%S %z') %></td>
           <td><%= report.site_reference %></td>
           <td><%= report.humidity %></td>
           <td><%= report.canopy %></td>
