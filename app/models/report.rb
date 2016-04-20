@@ -40,13 +40,13 @@ class Report < ApplicationRecord
 
   def self.transpose_trees_params(params)
     trees_index = 1
-    trees_param = []
+    trees_params = []
 
     while params["t#{trees_index}"].present?
-      trees_param << Tree.transpose_params(params["t#{trees_index}"])
+      trees_params << Tree.transpose_params(params["t#{trees_index}"])
       trees_index += 1
     end
 
-    return params
+    return trees_params
   end
 end

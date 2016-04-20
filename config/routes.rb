@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   }
 
   resources :users, only: [:index, :show, :new, :create, :edit, :update]
+  resources :reports, only: [:create]
 
   root to: 'users#index'
 end
