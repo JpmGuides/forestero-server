@@ -12,6 +12,15 @@ class ReportsController < ApplicationController
     end
   end
 
+  def index
+    @reports = Report.where(created_at: (Date.today.beginning_of_day..Date.today.end_of_day))
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data Report.to_csv }
+    end
+  end
+
   private
 
   def report_params
