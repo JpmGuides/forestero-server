@@ -6,7 +6,7 @@ FactoryGirl.define do
     visit_id { Faker::Lorem.characters(10) }
 
     trait :complete do
-      humiditiy { Faker::Number.number(2) }
+      humidity { Faker::Number.number(2) }
       canopy { Faker::Number.number(2) }
       flowers { Faker::Number.number(2) }
       bp { Faker::Number.number(2) }

@@ -5,10 +5,12 @@ class CreateReports < ActiveRecord::Migration[5.0]
       t.string :site_reference
       t.string :site_id
       t.string :visit_id
-      t.integer :humiditiy
+      t.integer :humidity
       t.integer :canopy
+      t.integer :leaf
+      t.integer :maintenance
       t.integer :flowers
-      t.integer :bp
+      t.boolean :bp
       t.boolean :harvesting
       t.boolean :drying
       t.boolean :fertilizer

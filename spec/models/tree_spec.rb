@@ -25,4 +25,32 @@ RSpec.describe Tree, type: :model do
       }.to change(Tree, :count).by(1)
     end
   end
+
+  describe "Tree#transpose_params" do
+    it 'should transform string to parameters hash' do
+      params = Tree.transpose_params("(1,2,3,1,1,1,2)")
+
+      expect(params).to be_a(Hash)
+    end
+
+    it 'should transform string to parameters hash' do
+      params = Tree.transpose_params("(1,2,3,1,1,1,2)")
+
+      expect(params).to be_a(Hash)
+    end
+
+    it 'should contains attributes as keys' do
+      params = Tree.transpose_params("(1,2,3,1,1,1,2)")
+      params_keys = params.keys.map(&:to_s)
+      attributes = Tree.column_names
+
+      expect(params_keys - attributes).to be_empty
+    end
+
+    it 'should return an empty Hash if not parsable' do
+      params = Tree.transpose_params(1)
+
+      expect(params).to be_empty
+    end
+  end
 end
