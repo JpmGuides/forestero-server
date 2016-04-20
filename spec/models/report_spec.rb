@@ -75,4 +75,38 @@ RSpec.describe Report, type: :model do
       expect(params.count).to eq(5)
     end
   end
+
+  describe "Report#to_csv" do
+    it 'should return a csv string' do
+      report = FactoryGirl.create(:report)
+       FactoryGirl.create_list(:tree, 3, report: report)
+
+      expect(Report.to_csv).to be_a(String)
+    end
+  end
+
+  describe "#to_csv" do
+    it 'should return an array with the vlaues' do
+      report = FactoryGirl.create(:report)
+
+      expect(report.to_csv).to eq([
+        report.taken_at, report.site_reference, report.humidity, report.canopy, report.leaf,
+        report.maintenance, report.flowers, report.bp, report.harvesting, report.drying,
+        report.fertilizer, report.wilt])
+    end
+
+    it 'should call to_csv for belonging trees' do
+      report = FactoryGirl.create(:report)
+      trees = FactoryGirl.create_list(:tree, 3, report: report)
+
+      expect(report.to_csv.count).to eq(12 + trees.count * 7)
+    end
+
+    it 'should call to_csv for 5 maximum belonging trees' do
+      report = FactoryGirl.create(:report)
+      FactoryGirl.create_list(:tree, 8, report: report)
+
+      expect(report.to_csv.count).to eq(12 + 5 * 7)
+    end
+  end
 end

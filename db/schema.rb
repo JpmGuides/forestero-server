@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20160419123127) do
     t.integer  "small"
     t.integer  "large"
     t.integer  "mature"
-    t.integer  "ripe"
+    t.integer  "rife"
     t.integer  "damaged"
     t.integer  "blackpod"
     t.integer  "report_id"

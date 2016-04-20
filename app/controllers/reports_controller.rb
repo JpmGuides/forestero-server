@@ -23,7 +23,7 @@ class ReportsController < ApplicationController
     params.require(:report).permit([
       :taken_at, :site_reference, :site_id, :visit_id, :humidity, :canopy,
       :leaf, :maintenance, :flowers, :bp, :harvesting, :drying, :fertilizer, :wilt,
-      {:trees_attributes => [:tiny, :small, :large, :mature, :ripe, :damaged, :blackpod]}
+      {:trees_attributes => [:tiny, :small, :large, :mature, :rife, :damaged, :blackpod]}
     ])
   end
 end

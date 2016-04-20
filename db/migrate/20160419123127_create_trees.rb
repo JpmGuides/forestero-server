@@ -5,7 +5,7 @@ class CreateTrees < ActiveRecord::Migration[5.0]
       t.integer :small
       t.integer :large
       t.integer :mature
-      t.integer :ripe
+      t.integer :rife
       t.integer :damaged
       t.integer :blackpod
       t.integer :report_id

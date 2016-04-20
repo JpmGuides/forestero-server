@@ -53,4 +53,12 @@ RSpec.describe Tree, type: :model do
       expect(params).to be_empty
     end
   end
+
+  describe "#to_csv" do
+    it 'should return an array with the vlaues' do
+      tree = FactoryGirl.create(:tree)
+
+      expect(tree.to_csv).to eq([tree.tiny, tree.small, tree.large, tree.mature, tree.rife, tree.damaged, tree.blackpod])
+    end
+  end
 end
