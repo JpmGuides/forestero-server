@@ -26,11 +26,11 @@ class Report < ApplicationRecord
       leaf: params['p7'],
       maintenance: params['p8'],
       flowers: params['p9'],
-      bp: params['p10'],
-      harvesting: params['p11'],
-      drying: params['p12'],
-      fertilizer: params['p13'],
-      wilt: params['p14'],
+      bp: !!(params['p10'].to_s =~ /yes/i),
+      harvesting: !!(params['p11'].to_s =~ /yes/i),
+      drying: !!(params['p12'].to_s =~ /yes/i),
+      fertilizer: !!(params['p13'].to_s =~ /yes/i),
+      wilt: !!(params['p14'].to_s =~ /yes/i),
     }}
 
     report_params[:report][:trees_attributes] = transpose_trees_params(params)
