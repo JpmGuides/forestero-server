@@ -1,0 +1,4 @@
+csv:
+  to: <%= ENV['CSV_EMAIL'] %>
+  cc: <%= ENV['CSV_EMAIL_CC'] %>
+  bcc: <%= ENV['CSV_EMAIL_BCC'] %>

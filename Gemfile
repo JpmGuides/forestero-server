@@ -11,6 +11,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'devise', '~> 4.0.0.rc2'
 gem 'twitter-bootstrap-rails'
 gem 'coffee-rails', '~> 4.1', '>= 4.1.1'
+gem 'config'
+gem 'postmark-rails', '>= 0.10.0'
 
 group :development, :test do
   gem 'rspec-rails', '3.5.0.beta3'
