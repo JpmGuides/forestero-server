@@ -1,8 +1,14 @@
 class UsersController < ApplicationController
   before_filter :user_from_url_param, only: [:edit, :update, :show]
+  before_action :load_user, only: :create
+  load_and_authorize_resource
 
   def index
-    @users = User.all
+    if current_user.admin?
+      @users = User.all
+    else
+      @users = User.where(id: current_user.id)
+    end
   end
 
   def new
@@ -10,8 +16,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-
     if @user.save
       flash[:notice] = 'The User is successfully saved!'
       redirect_to users_path
@@ -35,6 +39,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def load_user
+    @user = User.new(user_params)
+  end
 
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation)
