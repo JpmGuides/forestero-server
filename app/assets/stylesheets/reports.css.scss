@@ -17,3 +17,11 @@
     text-align: right;
   }
 }
+
+.table {
+  border-bottom: 1px solid #ddd;
+
+  .total {
+    font-style: italic;
+  }
+}

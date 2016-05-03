@@ -14,11 +14,11 @@ class ReportsController < ApplicationController
   end
 
   def index
-    @reports = Report.report
+    @resumes = Report.resumes
 
     respond_to do |format|
       format.html
-      format.csv { send_data Report.report_to_csv }
+      format.csv { send_data Resume.to_csv(@resumes) }
     end
   end
 
