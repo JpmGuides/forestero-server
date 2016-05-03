@@ -1,34 +1,38 @@
 <h1 class="title">Report - <%=  Date.today.strftime('%d.%m.%Y') %> </h1>
-<%= link_to reports_path(format: "csv"), class: 'btn btn-success add-button' do %>
-  <i class="fa fa-download" aria-hidden="true"></i>
-  Download CSV
+<% if @reports.empty? %>
+  <h2>No data Available</h2>
+<% else %>
+  <%= link_to reports_path(format: "csv"), class: 'btn btn-success add-button' do %>
+    <i class="fa fa-download" aria-hidden="true"></i>
+    Download CSV
+  <% end %>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <tbody>
+        <tr>
+          <th class="first-col">Region</th>
+          <% @reports.each do |region, reports| %>
+            <th><%= region %></th>
+          <% end %>
+        </tr>
+
+
+        <% @reports.each do |region, report| %>
+          <% report.each do |attribute, value| %>
+            <tr>
+              <th class="first-col"><%= attribute.to_s.humanize %></th>
+              <td>
+                <% if value.is_a?(Float) %>
+                  <%= number_with_precision(value, precision: 2) %>
+                <% else %>
+                  <%= value %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 <% end %>
-
-<div class="table-responsive">
-  <table class="table table-striped table-bordered">
-    <tbody>
-      <tr>
-        <th class="first-col">Region</th>
-        <% @reports.each do |region, reports| %>
-          <th><%= region %></th>
-        <% end %>
-      </tr>
-
-
-      <% @reports.each do |region, report| %>
-        <% report.each do |attribute, value| %>
-          <tr>
-            <th class="first-col"><%= attribute.to_s.humanize %></th>
-            <td>
-              <% if value.is_a?(Float) %>
-                <%= number_with_precision(value, precision: 2) %>
-              <% else %>
-                <%= value %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      <% end %>
-    </tbody>
-  </table>
-</div>
