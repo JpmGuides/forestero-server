@@ -14,11 +14,27 @@ class ReportsController < ApplicationController
   end
 
   def index
-    @reports = Report.where(created_at: (Date.today.beginning_of_day..Date.today.end_of_day))
+    @reports = Report.report
 
     respond_to do |format|
       format.html
-      format.csv { send_data Report.to_csv }
+      format.csv { send_data Report.report_to_csv }
+    end
+  end
+
+  def raw
+    if params[:date]
+      @date = Date.parse(params[:date])
+    else
+      @date = Date.today
+    end
+
+
+    @reports = Report.where(created_at: (@date.beginning_of_day..@date.end_of_day))
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data Report.to_csv(@date) }
     end
   end
 
@@ -32,7 +48,7 @@ class ReportsController < ApplicationController
 
     params.require(:report).permit([
       :taken_at, :site_reference, :site_id, :visit_id, :humidity, :canopy,
-      :leaf, :maintenance, :flowers, :bp, :harvesting, :drying, :fertilizer, :wilt,
+      :leaf, :maintenance, :flowers, :bp, :harvesting, :drying, :fertilizer, :wilt, :region,
       {:trees_attributes => [:tiny, :small, :large, :mature, :rife, :damaged, :blackpod]}
     ])
   end

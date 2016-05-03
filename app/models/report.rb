@@ -31,6 +31,7 @@ class Report < ApplicationRecord
       drying: !!(params['p12'].to_s =~ /yes/i),
       fertilizer: !!(params['p13'].to_s =~ /yes/i),
       wilt: !!(params['p14'].to_s =~ /yes/i),
+      region: params['p15']
     }}
 
     report_params[:report][:trees_attributes] = transpose_trees_params(params)
@@ -52,7 +53,7 @@ class Report < ApplicationRecord
     trees_params
   end
 
-  def self.to_csv(date = DateTime.now, options = {})
+  def self.to_csv(date = DateTime.yesterday, options = {})
     header_names = [
       'date', 'site_reference', 'humidity', 'canopy', 'leaf', 'maintenance', 'flowers', 'bp', 'harvesting', 'drying', 'fertilizer', 'wilt',
       'tree1_tiny', 'tree1_small', 'tree1_large', 'tree1_mature', 'tree1_rife', 'tree1_damaged', 'tree1_blackpod',
@@ -68,6 +69,56 @@ class Report < ApplicationRecord
         csv << report.to_csv
       end
     end
+  end
+
+  def self.report_to_csv(date = DateTime.yesterday)
+    report = Report.report(date)
+    header_names = [:region, :report_date] + report[report.keys.first].keys
+    header_names = header_names.map { |h| h.to_s.humanize }
+
+    CSV.generate do |csv|
+      csv << header_names
+      report.each do |region, values|
+        csv << [region, Date.today.strftime('%d.%m.%Y')] + values.values
+      end
+    end
+  end
+
+  def self.report(date = DateTime.yesterday)
+    report = {}
+
+    Report.where(taken_at: (date.beginning_of_day..date.end_of_day)).group_by(&:region).each do |region, reports|
+      nb_report = reports.count.to_f
+
+      report[region] = {}
+      report[region][:creation_date] = date.to_date.strftime('%d.%m.%Y')
+      report[region][:nb_sites]      = nb_report.to_i
+      report[region][:humidity]      = reports.sum(&:humidity) / nb_report
+      report[region][:canopy]        = reports.sum(&:canopy) / nb_report
+      report[region][:leaf]          = reports.sum(&:leaf) / nb_report
+      report[region][:maintenance]   = reports.sum(&:maintenance) / nb_report
+      report[region][:flowers]       = reports.sum(&:flowers) / nb_report
+
+      trees = reports.map(&:trees).flatten
+      nb_trees = trees.count.to_f
+
+      report[region][:tiny]       = trees.sum(&:tiny) / nb_trees
+      report[region][:small]      = trees.sum(&:small) / nb_trees
+      report[region][:large]      = trees.sum(&:large) / nb_trees
+      report[region][:mature]     = trees.sum(&:mature) / nb_trees
+      report[region][:ripe]       = trees.sum(&:rife) / nb_trees
+      report[region][:damaged]    = trees.sum(&:damaged) / nb_trees
+      report[region][:blackpod]   = trees.sum(&:blackpod) / nb_trees
+      report[region][:total_pods] = report[region][:tiny] + report[region][:small] + report[region][:large] + report[region][:mature] + report[region][:ripe] + report[region][:damaged] + report[region][:blackpod]
+
+      report[region][:black_pod_infestation] = Percentage.new(reports.sum { |r| r.bp ? 1 : 0 } / nb_report)
+      report[region][:wilt] = Percentage.new(reports.sum { |r| r.wilt ? 1 : 0 } / nb_report)
+      report[region][:harvesting] = Percentage.new(reports.sum { |r| r.harvesting ? 1 : 0 } / nb_report)
+      report[region][:drying] = Percentage.new(reports.sum { |r| r.drying ? 1 : 0 } / nb_report)
+      report[region][:fertilizer] = Percentage.new(reports.sum { |r| r.fertilizer ? 1 : 0 } / nb_report)
+    end
+
+    report
   end
 
   #-----------------------#

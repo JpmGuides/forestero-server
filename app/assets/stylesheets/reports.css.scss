@@ -1,0 +1,19 @@
+.first-col {
+  width: 200px;
+}
+
+.date-select {
+  a {
+    display: inline-block;
+  }
+
+  a:nth-child(1) {
+    width: 49%;
+    text-align: left;
+  }
+
+  a:nth-child(2) {
+    width: 49%;
+    text-align: right;
+  }
+}
