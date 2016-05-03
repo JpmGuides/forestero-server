@@ -6,11 +6,12 @@
   <% end %>
 <% end %>
 <div class="table-responsive">
-  <table class="table table-striped table-bordered">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th>Email</th>
-        <th class="actions">Actions</th>
+        <th>Type</th>
+        <th class="actions"></th>
       </tr>
     </thead>
 
@@ -18,6 +19,7 @@
       <% @users.each do |user| %>
         <tr class="<%= user == current_user ? 'info' : '' %>">
           <td><%= user.email %></td>
+          <td class="type"><p class="btn btn-sm btn-<%= user.admin ? 'success' : 'info' %> active"><%= user.admin ? 'Admin' : 'User' %></p></td>
           <td class="actions">
             <%= link_to edit_user_path(user), class: 'btn btn-sm btn-primary' do %>
               <i class="fa fa-pencil" aria-hidden="true"></i>

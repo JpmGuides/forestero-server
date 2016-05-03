@@ -44,6 +44,14 @@
 }
 
 .table {
+  .type {
+    padding: 3px;
+
+    .btn {
+      width: 60px;
+    }
+  }
+
   .actions {
     width: 20%;
     padding: 3px;

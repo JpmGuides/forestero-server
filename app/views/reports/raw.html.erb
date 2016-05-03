@@ -3,28 +3,28 @@
   <%= link_to (@date + 1.day).strftime('%d.%m.%Y') + ' >', raw_reports_path(date: (@date + 1.day).to_param) %>
 </div>
 
-<h1 class="title">Report</h1>
+<h1 class="title"><%= @date.strftime('%d.%m.%Y') %></h1>
 <%= link_to raw_reports_path(format: "csv", date: @date.to_param), class: 'btn btn-success add-button' do %>
   <i class="fa fa-download" aria-hidden="true"></i>
   Dowload CSV
 <% end %>
 <div class="table-responsive">
-  <table class="table table-striped table-bordered">
+  <table class="table table-striped">
     <thead>
       <tr>
-        <th>creation date</th>
-        <th>report date</th>
+        <th>Report creation date</th>
+        <th>Visit date</th>
         <th>Site reference</th>
-        <th>humidity</th>
-        <th>canopy</th>
-        <th>leaf</th>
-        <th>maintenance</th>
-        <th>flowers</th>
-        <th>bp</th>
-        <th>harvesting</th>
-        <th>drying</th>
-        <th>fertilizer</th>
-        <th>wilt</th>
+        <th>Humidity</th>
+        <th>Canopy</th>
+        <th>Leaf</th>
+        <th>Maintenance</th>
+        <th>Flowers</th>
+        <th>Bp</th>
+        <th>Harvesting</th>
+        <th>Drying</th>
+        <th>Fertilizer</th>
+        <th>Wilt</th>
       </tr>
     </thead>
 
