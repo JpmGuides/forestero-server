@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  resources :users, only: [:index, :show, :new, :create, :edit, :update]
+  resources :users, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   resources :reports, only: [:create, :index] do
     collection do
       get 'raw'

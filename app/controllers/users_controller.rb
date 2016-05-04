@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :user_from_url_param, only: [:edit, :update, :show]
+  before_filter :user_from_url_param, only: [:edit, :update, :show, :destroy]
   before_action :load_user, only: :create
   load_and_authorize_resource
 
@@ -39,6 +39,19 @@ class UsersController < ApplicationController
     else
       flash[:error] = @user.errors.full_messages[0]
       render 'edit'
+    end
+  end
+
+  def destroy
+    unless @user.admin?
+      @user.destroy
+
+      flash[:notice] = 'The User was successfully deleted'
+      redirect_to users_path
+    else
+
+      flash[:error] = 'You can not destroy this user'
+      redirect_to users_path
     end
   end
 

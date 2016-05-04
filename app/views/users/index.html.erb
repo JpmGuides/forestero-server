@@ -19,8 +19,14 @@
       <% @users.each do |user| %>
         <tr class="<%= user == current_user ? 'info' : '' %>">
           <td><%= user.email %></td>
-          <td class="type"><p class="btn btn-sm btn-<%= user.admin ? 'success' : 'info' %> active"><%= user.admin ? 'Admin' : 'User' %></p></td>
+          <td><%= user.admin ? 'Admin' : 'User' %></td>
           <td class="actions">
+            <% if current_user.admin? && !user.admin? %>
+              <%= link_to user_path(user), class: 'btn btn-sm btn-danger', method: :delete, data: {:confirm => 'Would you really destroy that user?'} do %>
+                <i class="fa fa-trash" aria-hidden="true"></i>
+                Delete
+              <% end %>
+            <% end %>
             <%= link_to edit_user_path(user), class: 'btn btn-sm btn-primary' do %>
               <i class="fa fa-pencil" aria-hidden="true"></i>
               Edit
