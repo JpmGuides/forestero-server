@@ -1,5 +1,5 @@
 <h1 class="title">Report - <%=  Date.today.strftime('%d.%m.%Y') %> </h1>
-<% if @reports.empty? %>
+<% if @resumes.empty? %>
   <h2>No data Available</h2>
 <% else %>
   <%= link_to reports_path(format: "csv"), class: 'btn btn-success add-button' do %>

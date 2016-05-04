@@ -115,7 +115,7 @@ class Resume
 
   def self.headers
     {
-      creation_date: 'Visite date',
+      creation_date: 'Visit date',
       nb_sites: 'Nb sites',
       humidity: 'Humidity',
       canopy: 'Canopy',
