@@ -29,19 +29,21 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :password, class: 'col-sm-4 control-label' %>
-    <div class="col-sm-8">
-      <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password'%>
+  <% if with_password %>
+    <div class="form-group">
+      <%= f.label :password, class: 'col-sm-4 control-label' %>
+      <div class="col-sm-8">
+        <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password'%>
+      </div>
     </div>
-  </div>
 
-  <div class="form-group">
-    <%= f.label :password_confirmation, class: 'col-sm-4 control-label' %>
-    <div class="col-sm-8">
-      <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'Password Confirmation'%>
+    <div class="form-group">
+      <%= f.label :password_confirmation, class: 'col-sm-4 control-label' %>
+      <div class="col-sm-8">
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'Password Confirmation'%>
+      </div>
     </div>
-  </div>
+  <% end %>
 
   <div class="form-group">
     <div class="col-sm-offset-4 col-sm-8">

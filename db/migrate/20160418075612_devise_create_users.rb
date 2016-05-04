@@ -30,6 +30,14 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string   :unlock_token # Only if unlock strategy is :email or :both
       t.datetime :locked_at
 
+      ## Invitable
+      t.string   :invitation_token
+      t.datetime :invitation_created_at
+      t.datetime :invitation_sent_at
+      t.datetime :invitation_accepted_at
+      t.integer  :invitation_limit
+      t.integer  :invited_by_id
+      t.string   :invited_by_type
 
       t.timestamps null: false
     end
@@ -38,5 +46,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
     add_index :users, :reset_password_token, unique: true
     add_index :users, :confirmation_token,   unique: true
     add_index :users, :unlock_token,         unique: true
+    add_index :users, :invitation_token,     unique: true
   end
 end

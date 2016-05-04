@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :user_from_url_param, only: [:edit, :update, :show, :destroy]
-  before_action :load_user, only: :create
+  before_action :invite_user, only: :create
   load_and_authorize_resource
 
   def index
@@ -57,8 +57,8 @@ class UsersController < ApplicationController
 
   private
 
-  def load_user
-    @user = User.new(user_params)
+  def invite_user
+    @user = User.invite!(user_params)
   end
 
   def user_params
