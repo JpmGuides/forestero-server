@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def index
     if current_user.admin?
-      @users = User.all
+      @users = User.all.order(created_at: :desc)
     else
       @users = User.where(id: current_user.id)
     end
@@ -67,7 +67,11 @@ class UsersController < ApplicationController
       params[:user].delete(:password_confirmation)
     end
 
-    params.require(:user).permit(:email, :first_name, :last_name, :password, :password_confirmation)
+    if current_user.admin?
+      params.require(:user).permit(:email, :first_name, :last_name, :admin, :password, :password_confirmation)
+    else
+      params.require(:user).permit(:email, :first_name, :last_name, :password, :password_confirmation)
+    end
   end
 
   def user_from_url_param

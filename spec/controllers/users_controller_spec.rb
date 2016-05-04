@@ -162,18 +162,18 @@ RSpec.describe UsersController, type: :controller do
     end
 
     describe 'with invalid params' do
-      it "should render to new" do
+      it "should render edit" do
         user = FactoryGirl.create(:user)
-        user_attributes = FactoryGirl.attributes_for(:user, email: user.email, password: '', password_confirmation: '')
+        user_attributes = FactoryGirl.attributes_for(:user, email: user.email, password: 'mismatching', password_confirmation: 'matching')
 
         put :update, params: { id: user.id, user: user_attributes }
 
         expect(response).to render_template(:edit)
       end
 
-      it "should not create new user" do
+      it "should not update user" do
         user = FactoryGirl.create(:user)
-        user_attributes = FactoryGirl.attributes_for(:user, email: user.email, password: '', password_confirmation: '')
+        user_attributes = FactoryGirl.attributes_for(:user, email: user.email, password: 'matching', password_confirmation: 'mismatching')
 
         put :update, params: { id: user.id, user: user_attributes }
 

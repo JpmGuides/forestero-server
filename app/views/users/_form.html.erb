@@ -9,16 +9,25 @@
   <div class="form-group">
     <%= f.label :first_name, class: 'col-sm-4 control-label' %>
     <div class="col-sm-8">
-      <%= f.text_field :first_name, autofocus: true, class: 'form-control', placeholder: 'First Name' %>
+      <%= f.text_field :first_name, class: 'form-control', placeholder: 'First Name' %>
     </div>
   </div>
 
   <div class="form-group">
     <%= f.label :last_name, class: 'col-sm-4 control-label' %>
     <div class="col-sm-8">
-      <%= f.text_field :last_name, autofocus: true, class: 'form-control', placeholder: 'Last Name' %>
+      <%= f.text_field :last_name, class: 'form-control', placeholder: 'Last Name' %>
     </div>
   </div>
+
+  <% if current_user.admin? %>
+    <div class="form-group">
+      <%= f.label :admin, class: 'col-sm-4 control-label' %>
+      <div class="col-sm-8">
+        <%= f.check_box :admin %>
+      </div>
+    </div>
+  <% end %>
 
   <div class="form-group">
     <%= f.label :password, class: 'col-sm-4 control-label' %>
