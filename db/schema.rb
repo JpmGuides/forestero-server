@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160504100701) do
+ActiveRecord::Schema.define(version: 20160629122803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,9 +31,15 @@ ActiveRecord::Schema.define(version: 20160504100701) do
     t.boolean  "drying"
     t.boolean  "fertilizer"
     t.boolean  "wilt"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "region"
+    t.string   "site_active_gps"
+    t.string   "site_latitude"
+    t.string   "site_longitude"
+    t.string   "site_accuracy"
+    t.string   "site_age"
+    t.string   "device_id"
   end
 
   create_table "trees", force: :cascade do |t|

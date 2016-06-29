@@ -17,7 +17,7 @@ gem 'config'
 gem 'postmark-rails', '>= 0.10.0'
 
 group :development, :test do
-  gem 'rspec-rails', '3.5.0.beta3'
+  gem 'rspec-rails', '>= 3.5.0.beta3', '< 3.6'
   gem 'rails-controller-testing'
   gem 'factory_girl_rails', '~> 4.7.0'
   gem 'spring-commands-rspec'

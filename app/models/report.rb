@@ -31,7 +31,13 @@ class Report < ApplicationRecord
       drying: !!(params['p12'].to_s =~ /yes/i),
       fertilizer: !!(params['p13'].to_s =~ /yes/i),
       wilt: !!(params['p14'].to_s =~ /yes/i),
-      region: params['p15']
+      region: params['p15'],
+      site_active_gps: params['s1'],
+      site_latitude: params['s2'],
+      site_longitude: params['s3'],
+      site_accuracy: params['s4'],
+      site_age: params['s5'],
+      device_id: params['d1']
     }}
 
     report_params[:report][:trees_attributes] = transpose_trees_params(params)

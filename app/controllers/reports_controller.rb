@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  skip_before_filter :authenticate_user!, only: :create
+  skip_before_action :authenticate_user!, only: :create
   protect_from_forgery except: :create
   load_and_authorize_resource except: [:create]
 
