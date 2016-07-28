@@ -3,6 +3,7 @@ require 'csv'
 class Report < ApplicationRecord
   # associations
   has_many :trees, inverse_of: :report, dependent: :destroy
+  belongs_to :device, inverse_of: :reports
 
   # validations
   validates :site_reference, :site_id, :visit_id, :taken_at, presence: true
