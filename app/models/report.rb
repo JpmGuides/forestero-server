@@ -65,7 +65,7 @@ class Report < ApplicationRecord
 
   def self.to_csv(date = DateTime.yesterday, options = {})
     header_names = [
-      'date', 'site_reference', 'humidity', 'canopy', 'leaf', 'maintenance', 'flowers', 'bp', 'harvesting', 'drying', 'fertilizer', 'wilt',
+      'date', 'site_reference', 'site_longitude', 'site_latitude', 'site_age', 'device', 'humidity', 'canopy', 'leaf', 'maintenance', 'flowers', 'bp', 'wilt', 'harvesting', 'drying', 'fertilizer',
       'tree1_tiny', 'tree1_small', 'tree1_large', 'tree1_mature', 'tree1_rife', 'tree1_damaged', 'tree1_blackpod',
       'tree2_tiny', 'tree2_small', 'tree2_large', 'tree2_mature', 'tree2_rife', 'tree2_damaged', 'tree2_blackpod',
       'tree3_tiny', 'tree3_small', 'tree3_large', 'tree3_mature', 'tree3_rife', 'tree3_damaged', 'tree3_blackpod',
@@ -97,10 +97,23 @@ class Report < ApplicationRecord
 
   def to_csv
     column_names = [
-      'taken_at', 'site_reference', 'humidity', 'canopy', 'leaf', 'maintenance', 'flowers', 'bp', 'harvesting', 'drying', 'fertilizer', 'wilt'
+      'taken_at', 'site_reference', 'site_longitude', 'site_latitude', 'site_age', 'device', 'humidity', 'canopy', 'leaf', 'maintenance', 'flowers', 'bp', 'wilt', 'harvesting', 'drying', 'fertilizer'
     ]
 
-    values = attributes.values_at(*column_names)
+    values = []
+
+    column_names.each do |attributes|
+      value = send(attributes)
+
+      if value.is_a?(Device)
+        values << value.to_s
+      elsif value.is_a?(TrueClass) || value.is_a?(FalseClass)
+        values << (value ? 1 : 0)
+      else
+        values << value
+      end
+    end
+
     trees.limit(5).each do |tree|
       values += tree.to_csv
     end

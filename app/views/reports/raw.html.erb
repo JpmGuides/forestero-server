@@ -15,16 +15,19 @@
         <th>Report creation date</th>
         <th>Visit date</th>
         <th>Site reference</th>
+        <th>Gps coordinates</th>
+        <th>Age</th>
+        <th>Ipad</th>
         <th>Humidity</th>
         <th>Canopy</th>
         <th>Leaf</th>
         <th>Maintenance</th>
         <th>Flowers</th>
         <th>Bp</th>
+        <th>Wilt</th>
         <th>Harvesting</th>
         <th>Drying</th>
         <th>Fertilizer</th>
-        <th>Wilt</th>
       </tr>
     </thead>
 
@@ -34,16 +37,19 @@
           <td><%= report.created_at.in_time_zone('CET').strftime('%d.%m.%Y %H:%M:%S %z') %></td>
           <td><%= report.taken_at.to_date.strftime('%d.%m.%Y') %></td>
           <td><%= report.site_reference %></td>
+          <td><%= report.site_longitude %>/<%= report.site_latitude %></td>
+          <td><%= report.site_age %></td>
+          <td><%= report.device %></td>
           <td><%= report.humidity %></td>
           <td><%= report.canopy %></td>
           <td><%= report.leaf %></td>
           <td><%= report.maintenance %></td>
           <td><%= report.flowers %></td>
           <td><%= report.bp ? 'yes' : 'no' %></td>
+          <td><%= report.wilt ? 'yes' : 'no' %></td>
           <td><%= report.harvesting ? 'yes' : 'no' %></td>
           <td><%= report.drying ? 'yes' : 'no' %></td>
           <td><%= report.fertilizer ? 'yes' : 'no' %></td>
-          <td><%= report.wilt ? 'yes' : 'no' %></td>
         </tr>
       <% end %>
     </tbody>

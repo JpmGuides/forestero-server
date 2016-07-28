@@ -18,7 +18,7 @@ class ReportsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv { send_data Resume.to_csv(@resumes) }
+      format.csv { send_data "\uFEFF" + Resume.to_csv(@resumes) }
     end
   end
 
@@ -34,7 +34,7 @@ class ReportsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv { send_data Report.to_csv(@date) }
+      format.csv { send_data "\uFEFF" + Report.to_csv(@date) }
     end
   end
 

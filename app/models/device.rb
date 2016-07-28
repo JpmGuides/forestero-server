@@ -5,4 +5,8 @@ class Device < ApplicationRecord
   # validations
   validates :uuid, presence: true
   validates :uuid, uniqueness: true
+
+  def to_s
+    name || ''
+  end
 end
