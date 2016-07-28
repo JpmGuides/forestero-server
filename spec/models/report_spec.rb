@@ -15,7 +15,14 @@ RSpec.describe Report, type: :model do
       "p11"=>"true",
       "p12"=>"false",
       "p13"=>"false",
-      "p14"=>"true" }
+      "p14"=>"true",
+      "s1"=>"true",
+      "s2"=>"2.3434535",
+      "s3"=>"3.4353453",
+      "s4"=>"+5.000",
+      "s5"=>"26+",
+      "d1"=>"4354565646456456"
+    }
   }
 
   let(:trees_param) {
@@ -59,6 +66,26 @@ RSpec.describe Report, type: :model do
 
     it 'should return empty params if param cannot be parsed' do
       expect(Report.transpose_params('test')).to be_empty
+    end
+
+    it 'should create device if not exist' do
+      device = FactoryGirl.build(:device)
+      params = report_params
+      params['d1'] = device.uuid
+
+      expect {
+        Report.transpose_params(report_params)
+      }.to change(Device, :count).by(1)
+    end
+
+    it 'should not create device if exist' do
+      device = FactoryGirl.create(:device)
+      params = report_params
+      params['d1'] = device.uuid
+
+      expect {
+        Report.transpose_params(report_params)
+      }.to_not change(Device, :count)
     end
   end
 

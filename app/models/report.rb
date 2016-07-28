@@ -17,6 +17,9 @@ class Report < ApplicationRecord
 
   def self.transpose_params(params)
     return {} unless params.is_a?(Hash)
+
+    device = Device.find_or_create_by(uuid: params['d1'])
+
     report_params = { report: {
       taken_at: (params['p1'] ? Date.parse(params['p1']).to_datetime : nil),
       site_reference: params['p2'],
@@ -38,7 +41,7 @@ class Report < ApplicationRecord
       site_longitude: params['s3'],
       site_accuracy: params['s4'],
       site_age: params['s5'],
-      device_id: params['d1']
+      device_id: device.id
     }}
 
     report_params[:report][:trees_attributes] = transpose_trees_params(params)

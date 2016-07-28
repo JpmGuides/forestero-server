@@ -20,6 +20,23 @@ RSpec.describe ReportsController, type: :controller do
         }.to change(Report, :count).by(1)
       end
 
+      it 'should create a device if not exists' do
+        request.env['RAW_POST_DATA'] = post_data + '&d1=1234567890'
+
+        expect {
+          post :create
+        }.to change(Device, :count).by(1)
+      end
+
+      it 'should be link with a device device' do
+        request.env['RAW_POST_DATA'] = post_data + '&d1=1234567890'
+
+        post :create
+
+        expect(assigns(:report)).to be_a(Report)
+        expect(assigns(:report).device).to be_a(Device)
+      end
+
       it 'should create nested trees' do
         request.env['RAW_POST_DATA'] = post_data
 
