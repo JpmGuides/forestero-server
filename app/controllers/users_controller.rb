@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :user_from_url_param, only: [:edit, :update, :show, :destroy]
+  before_action :user_from_url_param, only: [:edit, :update, :show, :destroy]
   before_action :invite_user, only: :create
   load_and_authorize_resource
 
