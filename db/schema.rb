@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160728100608) do
+ActiveRecord::Schema.define(version: 20160728145459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20160728100608) do
     t.string   "site_accuracy"
     t.string   "site_age"
     t.integer  "device_id"
+    t.boolean  "demo"
   end
 
   create_table "trees", force: :cascade do |t|

@@ -11,6 +11,10 @@ class Report < ApplicationRecord
   # accept nested parameters
   accepts_nested_attributes_for :trees
 
+  #scopes
+  scope :demo, -> { where(demo: true) }
+  scope :real, -> { where("demo IS NULL or demo = false") }
+
   #-----------------------#
   #     class methods     #
   #-----------------------#
@@ -41,7 +45,8 @@ class Report < ApplicationRecord
       site_longitude: params['s3'],
       site_accuracy: params['s4'],
       site_age: params['s5'],
-      device_id: device.id
+      device_id: device.id,
+      demo: (params['d2'].to_s == '1')
     }}
 
     report_params[:report][:trees_attributes] = transpose_trees_params(params)
@@ -75,7 +80,7 @@ class Report < ApplicationRecord
 
     CSV.generate(options) do |csv|
       csv << header_names
-      Report.where(created_at: (date.beginning_of_day..date.end_of_day)).each do |report|
+      Report.where(created_at: (date.beginning_of_day..date.end_of_day)).real.each do |report|
         csv << report.to_csv
       end
     end
@@ -84,7 +89,7 @@ class Report < ApplicationRecord
   def self.resumes(date = DateTime.yesterday)
     resumes = []
 
-    Report.where(taken_at: (date.beginning_of_day..date.end_of_day)).group_by(&:region).each do |region, reports|
+    Report.where(taken_at: (date.beginning_of_day..date.end_of_day)).real.group_by(&:region).each do |region, reports|
       resumes << Resume.new(date, region, reports)
     end
 

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :reports, only: [:create, :index] do
     collection do
       get 'raw'
+      get 'demo'
     end
   end
 

@@ -30,11 +30,25 @@ class ReportsController < ApplicationController
     end
 
 
-    @reports = Report.where(created_at: (@date.beginning_of_day..@date.end_of_day))
+    @reports = Report.where(created_at: (@date.beginning_of_day..@date.end_of_day)).real
 
     respond_to do |format|
       format.html
       format.csv { send_data "\uFEFF" + Report.to_csv(@date) }
+    end
+  end
+
+  def demo
+    if params[:date]
+      @date = Date.parse(params[:date])
+    else
+      @date = Date.today
+    end
+
+    @reports = Report.where(created_at: (@date.beginning_of_day..@date.end_of_day)).demo
+
+    respond_to do |format|
+      format.html
     end
   end
 
@@ -49,7 +63,7 @@ class ReportsController < ApplicationController
     params.require(:report).permit([
       :taken_at, :site_reference, :site_id, :visit_id, :humidity, :canopy,
       :leaf, :maintenance, :flowers, :bp, :harvesting, :drying, :fertilizer, :wilt, :region,
-      :site_active_gps, :site_latitude, :site_longitude, :site_accuracy, :site_age, :device_id,
+      :site_active_gps, :site_latitude, :site_longitude, :site_accuracy, :site_age, :device_id, :demo,
       {:trees_attributes => [:tiny, :small, :large, :mature, :rife, :damaged, :blackpod]}
     ])
   end
