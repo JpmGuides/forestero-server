@@ -71,8 +71,15 @@ Rails.application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.delivery_method   = :postmark
-  config.action_mailer.postmark_settings = { :api_token => ENV['POSTMARK_API_TOKEN'] }
+  ActionMailer::Base.smtp_settings = {
+    :address        => "smtp.sendgrid.net",
+    :port           => "587",
+    :authentication => :plain,
+    :user_name      => ENV["SENDGRID_USERNAME"],
+    :password       => ENV["SENDGRID_PASSWORD"],
+    :domain         => "heroku.com",
+    :enable_starttls_auto => true
+  }
   config.action_mailer.default_url_options = { :host => 'forestero.herokuapp.com' }
 
 
