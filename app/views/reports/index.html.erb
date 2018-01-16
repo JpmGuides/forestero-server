@@ -1,4 +1,9 @@
-<h1 class="title">Report - <%=  Date.today.strftime('%d.%m.%Y') %> </h1>
+<div class="date-select">
+  <%= link_to '< ' + (@date - 1.day).strftime('%d.%m.%Y'), reports_path(date: (@date - 1.day).to_param), class: 'prev-date' if @date > (Date.today - 10.days)%>
+  <%= link_to (@date + 1.day).strftime('%d.%m.%Y') + ' >', reports_path(date: (@date + 1.day).to_param), class: 'next-date' if @date < Date.today %>
+</div>
+
+<h1 class="title">Report - <%=  @date.strftime('%d.%m.%Y') %> </h1>
 <% if @resumes.empty? %>
   <h2>No data Available</h2>
 <% else %>

@@ -3,18 +3,21 @@
 }
 
 .date-select {
+  position: relative;
+  padding: 10px;
+
   a {
     display: inline-block;
   }
 
-  a:nth-child(1) {
-    width: 49%;
-    text-align: left;
+  a.prev-date {
+    position: absolute;
+    left: 0;
   }
 
-  a:nth-child(2) {
-    width: 49%;
-    text-align: right;
+  a.next-date {
+    position: absolute;
+    right: 0;
   }
 }
 

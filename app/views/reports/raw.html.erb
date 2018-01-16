@@ -1,6 +1,6 @@
 <div class="date-select">
-  <%= link_to '< ' + (@date - 1.day).strftime('%d.%m.%Y'), raw_reports_path(date: (@date - 1.day).to_param) %>
-  <%= link_to (@date + 1.day).strftime('%d.%m.%Y') + ' >', raw_reports_path(date: (@date + 1.day).to_param) %>
+  <%= link_to '< ' + (@date - 1.day).strftime('%d.%m.%Y'), raw_reports_path(date: (@date - 1.day).to_param), class: 'prev-date'  %>
+  <%= link_to (@date + 1.day).strftime('%d.%m.%Y') + ' >', raw_reports_path(date: (@date + 1.day).to_param), class: 'next-date'  %>
 </div>
 
 <h1 class="title"><%= @date.strftime('%d.%m.%Y') %></h1>

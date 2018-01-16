@@ -14,7 +14,13 @@ class ReportsController < ApplicationController
   end
 
   def index
-    @resumes = Report.resumes
+    if params[:date]
+      @date = [Date.parse(params[:date]), Date.today - 10.days].max
+    else
+      @date = Date.today
+    end
+
+    @resumes = Report.resumes(@date)
 
     respond_to do |format|
       format.html
@@ -28,7 +34,6 @@ class ReportsController < ApplicationController
     else
       @date = Date.today
     end
-
 
     @reports = Report.where(created_at: (@date.beginning_of_day..@date.end_of_day)).real
 
