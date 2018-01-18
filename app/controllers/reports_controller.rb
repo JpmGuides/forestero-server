@@ -15,7 +15,7 @@ class ReportsController < ApplicationController
 
   def index
     if params[:date]
-      @date = [Date.parse(params[:date]), Date.today - 10.days].max
+      @date = [Date.parse(params[:date]), (Date.today - 10.days)].max
     else
       @date = Date.today
     end
@@ -24,7 +24,7 @@ class ReportsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv { send_data "\uFEFF" + Resume.to_csv(@resumes) }
+      format.csv { send_data "\uFEFF" +  Resume.to_csv(@resumes) }
     end
   end
 

@@ -7,7 +7,7 @@
 <% if @resumes.empty? %>
   <h2>No data Available</h2>
 <% else %>
-  <%= link_to reports_path(format: "csv"), class: 'btn btn-success add-button' do %>
+  <%= link_to reports_path(date: @date.to_param, format: "csv"), class: 'btn btn-success add-button' do %>
     <i class="fa fa-download" aria-hidden="true"></i>
     Download CSV
   <% end %>

@@ -9,6 +9,10 @@ class Resume
     self.reports = reports
   end
 
+  def country
+    reports.first.country
+  end
+
   def report_date
     Date.today.strftime('%d.%m.%Y')
   end
@@ -105,16 +109,15 @@ class Resume
     @fertilizer ||= Percentage.new(reports.sum { |r| r.fertilizer ? 1 : 0 } / nb_reports.to_f)
   end
 
-  def to_csv(csv)
+  def to_csv
     method = [:region, :report_date] + self.class.headers.keys
 
-    values = method.map { |m| self.send(m) }
-
-    csv << values
+    method.map { |m| self.send(m) }
   end
 
   def self.headers
     {
+      country: 'Country',
       creation_date: 'Visit date',
       nb_sites: 'Nb sites',
       humidity: 'Humidity',
@@ -146,7 +149,7 @@ class Resume
       csv << header_names
 
       resumes.each do |resume|
-        resume.to_csv(csv)
+        csv << resume.to_csv
       end
     end
   end

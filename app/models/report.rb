@@ -70,7 +70,7 @@ class Report < ApplicationRecord
 
   def self.to_csv(date = DateTime.yesterday, options = {})
     header_names = [
-      'date', 'site_reference', 'site_longitude', 'site_latitude', 'site_age', 'device', 'humidity', 'canopy', 'leaf', 'maintenance', 'flowers', 'bp', 'wilt', 'harvesting', 'drying', 'fertilizer',
+      'date', 'site_reference', 'country', 'site_longitude', 'site_latitude', 'site_age', 'device', 'humidity', 'canopy', 'leaf', 'maintenance', 'flowers', 'bp', 'wilt', 'harvesting', 'drying', 'fertilizer',
       'tree1_tiny', 'tree1_small', 'tree1_large', 'tree1_mature', 'tree1_rife', 'tree1_damaged', 'tree1_blackpod',
       'tree2_tiny', 'tree2_small', 'tree2_large', 'tree2_mature', 'tree2_rife', 'tree2_damaged', 'tree2_blackpod',
       'tree3_tiny', 'tree3_small', 'tree3_large', 'tree3_mature', 'tree3_rife', 'tree3_damaged', 'tree3_blackpod',
@@ -100,9 +100,17 @@ class Report < ApplicationRecord
   #   instance methods    #
   #-----------------------#
 
+  def country
+    if ['AS', 'BAR', 'CR', 'ER', 'WN', 'WS'].include?(site_reference)
+      return 'Ghana'
+    else
+      return 'Ivory Coast'
+    end
+  end
+
   def to_csv
     column_names = [
-      'taken_at', 'site_reference', 'site_longitude', 'site_latitude', 'site_age', 'device', 'humidity', 'canopy', 'leaf', 'maintenance', 'flowers', 'bp', 'wilt', 'harvesting', 'drying', 'fertilizer'
+      'taken_at', 'site_reference', 'country', 'site_longitude', 'site_latitude', 'site_age', 'device', 'humidity', 'canopy', 'leaf', 'maintenance', 'flowers', 'bp', 'wilt', 'harvesting', 'drying', 'fertilizer'
     ]
 
     values = []
