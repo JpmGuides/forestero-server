@@ -42,12 +42,15 @@
         <a class="navbar-brand" href="/">Forestero</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
+            <li>
+              <%= link_to 'forestero-sa.com', 'http://www.forestero-sa.com', target: '_blank' %>
+            </li>
             <% if current_user && current_user.admin? %>
               <li>
-                <%= link_to "Raw Data", raw_reports_path  %>
+                <%= link_to 'Raw Data', raw_reports_path  %>
               </li>
               <li>
-                <%= link_to "Demo Data", demo_reports_path  %>
+                <%= link_to 'Demo Data', demo_reports_path  %>
               </li>
             <% end %>
             <li>
