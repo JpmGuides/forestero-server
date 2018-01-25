@@ -88,6 +88,7 @@ class Report < ApplicationRecord
 
   def self.resumes(date = DateTime.yesterday)
     resumes = []
+    date = date - 1.day
 
     Report.where(taken_at: (date.beginning_of_day..date.end_of_day)).real.group_by(&:region).each do |region, reports|
       resumes << Resume.new(date, region, reports)

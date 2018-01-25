@@ -18,7 +18,7 @@ class Resume
   end
 
   def creation_date
-    date.to_date.strftime('%d.%m.%Y')
+    (date + 1.day).strftime('%d.%m.%Y')
   end
 
   def nb_reports
