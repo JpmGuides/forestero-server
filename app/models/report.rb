@@ -101,7 +101,7 @@ class Report < ApplicationRecord
   #-----------------------#
 
   def country
-    if ['AS', 'BAR', 'CR', 'ER', 'WN', 'WS'].include?(site_reference)
+    if ['AS', 'BAR', 'CR', 'ER', 'WN', 'WS'].include?(region)
       return 'Ghana'
     else
       return 'Ivory Coast'
