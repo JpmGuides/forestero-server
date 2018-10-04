@@ -49,6 +49,11 @@ class Report < ApplicationRecord
       demo: (params['d2'].to_s == '1')
     }}
 
+    if device.uuid == '71739E5944834FAC8EF9CA534CE20240'
+      report_params[:report][:demo] = false
+    end
+
+
     report_params[:report][:trees_attributes] = transpose_trees_params(params)
 
     report_params
