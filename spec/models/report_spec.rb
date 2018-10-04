@@ -117,7 +117,7 @@ RSpec.describe Report, type: :model do
       report = FactoryGirl.create(:report)
 
       expect(report.to_csv).to eq([
-        report.taken_at, report.site_reference, report.site_longitude, report.site_latitude, report.site_age, report.device,
+        report.taken_at, report.site_reference, report.country, report.site_longitude, report.site_latitude, report.site_age, report.device,
         report.humidity, report.canopy, report.leaf, report.maintenance, report.flowers,
         report.bp, report.wilt, report.harvesting, report.drying, report.fertilizer])
     end
@@ -126,14 +126,14 @@ RSpec.describe Report, type: :model do
       report = FactoryGirl.create(:report)
       trees = FactoryGirl.create_list(:tree, 3, report: report)
 
-      expect(report.to_csv.count).to eq(16 + trees.count * 7)
+      expect(report.to_csv.count).to eq(17 + trees.count * 7)
     end
 
     it 'should call to_csv for 5 maximum belonging trees' do
       report = FactoryGirl.create(:report)
       FactoryGirl.create_list(:tree, 8, report: report)
 
-      expect(report.to_csv.count).to eq(16 + 5 * 7)
+      expect(report.to_csv.count).to eq(17 + 5 * 7)
     end
   end
 end
