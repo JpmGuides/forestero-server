@@ -11,9 +11,11 @@ gem 'jbuilder', '~> 2.0'
 gem 'devise', '4.1.0'
 gem 'devise_invitable'
 gem 'cancan'
-gem 'twitter-bootstrap-rails'
 gem 'coffee-rails', '~> 4.1', '>= 4.1.1'
 gem 'config'
+gem 'twitter-bootstrap-rails'
+gem 'font-awesome-rails'
+gem 'tinymce-rails'
 
 group :development, :test do
   gem 'rspec-rails', '3.5.1'

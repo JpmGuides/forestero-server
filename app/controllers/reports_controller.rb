@@ -20,6 +20,7 @@ class ReportsController < ApplicationController
       @date = Date.today
     end
 
+    @day_text = DayText.find_or_initialize_by(date: @date)
     @resumes = Report.resumes(@date)
 
     respond_to do |format|
@@ -35,6 +36,7 @@ class ReportsController < ApplicationController
       @date = Date.today
     end
 
+    @day_text = DayText.find_or_initialize_by(date: @date)
     @reports = Report.where(created_at: (@date.beginning_of_day..@date.end_of_day)).real
 
     respond_to do |format|

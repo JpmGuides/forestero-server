@@ -4,6 +4,13 @@
 </div>
 
 <h1 class="title">Report - <%=  @date.strftime('%d.%m.%Y') %> </h1>
+
+<% if @day_text.text.present? %>
+  <div>
+    <%= @day_text.text.html_safe %>
+  </div>
+<% end %>
+
 <% if @resumes.empty? %>
   <h2>No data Available</h2>
 <% else %>

@@ -77,6 +77,8 @@ GEM
     faker (1.6.6)
       i18n (~> 0.5)
     ffi (1.9.14)
+    font-awesome-rails (4.7.0.5)
+      railties (>= 3.2, < 6.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -192,6 +194,8 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.5)
+    tinymce-rails (5.0.4)
+      railties (>= 3.1.1)
     turbolinks (5.0.0)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.0)
@@ -227,6 +231,7 @@ DEPENDENCIES
   devise_invitable
   factory_girl_rails (~> 4.7.0)
   faker
+  font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails
   listen (~> 3.0.5)
@@ -239,6 +244,7 @@ DEPENDENCIES
   spring
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
+  tinymce-rails
   turbolinks (~> 5.x)
   twitter-bootstrap-rails
   tzinfo-data

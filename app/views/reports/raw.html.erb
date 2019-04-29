@@ -4,6 +4,17 @@
 </div>
 
 <h1 class="title"><%= @date.strftime('%d.%m.%Y') %></h1>
+<%= form_for(@day_text, url: day_texts_path, method: :post, remote: true) do |f| %>
+  <%= f.hidden_field :date %>
+
+  <div class="form-group">
+    <%= f.text_area :text, :class => "tinymce", rows: 5 %>
+    <%= tinymce %>
+  </div>
+
+  <%= f.submit 'save', class: 'btn btn-default' %>
+<% end %>
+
 <%= link_to raw_reports_path(format: "csv", date: @date.to_param), class: 'btn btn-success add-button' do %>
   <i class="fa fa-download" aria-hidden="true"></i>
   Dowload CSV
