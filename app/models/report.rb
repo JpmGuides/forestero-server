@@ -133,7 +133,7 @@ class Report < ApplicationRecord
       end
     end
 
-    trees.limit(5).each do |tree|
+    trees.order(created_at: :asc).limit(5).each do |tree|
       values += tree.to_csv
     end
 
