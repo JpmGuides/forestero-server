@@ -15,11 +15,13 @@ class Tree < ApplicationRecord
     {
       tiny:     numbers[0],
       small:    numbers[1],
-      large:    numbers[2],
-      mature:   numbers[3],
-      rife:     numbers[4],
-      damaged:  numbers[5],
-      blackpod: numbers[6]
+      small2:   numbers[2],
+      large:    numbers[3],
+      mature:   numbers[4],
+      rife:     numbers[5],
+      infest:   numbers[6],
+      force_r:  numbers[7],
+      blackpod: numbers[8]
     }
   rescue
     {}
@@ -30,7 +32,7 @@ class Tree < ApplicationRecord
   #-----------------------#
 
   def to_csv
-    column_names = ['tiny', 'small', 'large', 'mature', 'rife', 'damaged', 'blackpod']
+    column_names = ['tiny', 'small', 'small2', 'large', 'mature', 'rife', 'infest', 'force_r', 'blackpod']
 
     attributes.values_at(*column_names)
   end

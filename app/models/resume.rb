@@ -58,35 +58,47 @@ class Resume
   end
 
   def tiny
-    @tiny ||= trees.sum(&:tiny) / nb_trees.to_f
+    @tiny ||= trees.sum { |t| t.tiny.to_i }  / nb_trees.to_f
   end
 
   def small
-    @small ||= trees.sum(&:small) / nb_trees.to_f
+    @small ||= trees.sum { |t| t.small.to_i }  / nb_trees.to_f
+  end
+
+  def small2
+    @small2 ||= trees.sum { |t| t.small2.to_i }  / nb_trees.to_f
   end
 
   def large
-    @large ||= trees.sum(&:large) / nb_trees.to_f
+    @large ||= trees.sum { |t| t.large.to_i } / nb_trees.to_f
   end
 
   def mature
-    @mature ||= trees.sum(&:mature) / nb_trees.to_f
+    @mature ||= trees.sum { |t| t.mature.to_i } / nb_trees.to_f
   end
 
   def ripe
-    @ripe ||= trees.sum(&:rife) / nb_trees.to_f
+    @ripe ||= trees.sum { |t| t.rife.to_i } / nb_trees.to_f
+  end
+
+  def infest
+    @infest ||= trees.sum { |t| t.infest.to_i }  / nb_trees.to_f
+  end
+
+  def force_r
+    @force_r ||= trees.sum { |t| t.force_r.to_i } / nb_trees.to_f
   end
 
   def damaged
-    @damaged ||= trees.sum(&:damaged) / nb_trees.to_f
+    @damaged ||= trees.sum { |t| t.damaged.to_i } / nb_trees.to_f
   end
 
   def blackpod
-    @blackpod ||= trees.sum(&:blackpod) / nb_trees.to_f
+    @blackpod ||= trees.sum { |t| t.blackpod.to_i }/ nb_trees.to_f
   end
 
   def total_pods
-    @total_pods ||= tiny + small + large + mature + ripe + damaged + blackpod
+    @total_pods ||= tiny + small + large + mature + ripe + infest + force_r + blackpod
   end
 
   def bp
@@ -127,10 +139,12 @@ class Resume
       flowers: 'Flowers',
       tiny: 'Tiny',
       small: 'Small',
+      small2: 'Small 2',
       large: 'Large',
       mature: 'Mature',
       ripe: 'Ripe',
-      damaged: 'Damaged',
+      infest: 'Infest',
+      force_r: 'Force R',
       blackpod: 'Blackpod',
       total_pods: 'Total Pods',
       bp: 'Black pod infestations',

@@ -28,19 +28,19 @@ RSpec.describe Tree, type: :model do
 
   describe "Tree#transpose_params" do
     it 'should transform string to parameters hash' do
-      params = Tree.transpose_params("(1,2,3,1,1,1,2)")
+      params = Tree.transpose_params("(1,2,3,1,1,1,2,1,2)")
 
       expect(params).to be_a(Hash)
     end
 
     it 'should transform string to parameters hash' do
-      params = Tree.transpose_params("(1,2,3,1,1,1,2)")
+      params = Tree.transpose_params("(1,2,3,1,1,1,2,1,2)")
 
       expect(params).to be_a(Hash)
     end
 
     it 'should contains attributes as keys' do
-      params = Tree.transpose_params("(1,2,3,1,1,1,2)")
+      params = Tree.transpose_params("(1,2,3,1,1,1,2,1,2)")
       params_keys = params.keys.map(&:to_s)
       attributes = Tree.column_names
 
@@ -58,7 +58,7 @@ RSpec.describe Tree, type: :model do
     it 'should return an array with the vlaues' do
       tree = FactoryGirl.create(:tree)
 
-      expect(tree.to_csv).to eq([tree.tiny, tree.small, tree.large, tree.mature, tree.rife, tree.damaged, tree.blackpod])
+      expect(tree.to_csv).to eq([tree.tiny, tree.small, tree.small2, tree.large, tree.mature, tree.rife, tree.infest, tree.force_r, tree.blackpod])
     end
   end
 end

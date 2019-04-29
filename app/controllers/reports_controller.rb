@@ -71,7 +71,7 @@ class ReportsController < ApplicationController
       :taken_at, :site_reference, :site_id, :visit_id, :humidity, :canopy,
       :leaf, :maintenance, :flowers, :bp, :harvesting, :drying, :fertilizer, :wilt, :region,
       :site_active_gps, :site_latitude, :site_longitude, :site_accuracy, :site_age, :device_id, :demo,
-      {:trees_attributes => [:tiny, :small, :large, :mature, :rife, :damaged, :blackpod]}
+      {:trees_attributes => [:tiny, :small, :small2, :large, :mature, :rife, :infest, :force_r, :blackpod]}
     ])
   end
 end

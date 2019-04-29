@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe DayTextsController, type: :controller, focus: true do
+RSpec.describe DayTextsController, type: :controller do
 
   describe "POST #create" do
     describe 'with valid params' do

@@ -26,11 +26,11 @@ RSpec.describe Report, type: :model do
   }
 
   let(:trees_param) {
-    { "t1"=>"(1,2,3,1,1,1,2)",
-      "t2"=>"(99,2,5,100,0,0,0)",
-      "t3"=>"(2,2,44,2,0,2,0)",
-      "t4"=>"(0,0,0,0,0,0,1)",
-      "t5"=>"(1,1,1,1,1,1,1)" }
+    { "t1"=>"(1,2,2,3,1,1,1,1,2)",
+      "t2"=>"(99,2,2,5,100,0,0,0,0)",
+      "t3"=>"(2,2,2,44,2,0,2,2,0)",
+      "t4"=>"(0,0,0,0,0,0,0,0,1)",
+      "t5"=>"(1,1,0,1,1,1,1,1,1)" }
   }
 
   it "should create a report with factory" do
@@ -126,14 +126,14 @@ RSpec.describe Report, type: :model do
       report = FactoryGirl.create(:report)
       trees = FactoryGirl.create_list(:tree, 3, report: report)
 
-      expect(report.to_csv.count).to eq(17 + trees.count * 7)
+      expect(report.to_csv.count).to eq(23 + trees.count * 7)
     end
 
     it 'should call to_csv for 5 maximum belonging trees' do
       report = FactoryGirl.create(:report)
       FactoryGirl.create_list(:tree, 8, report: report)
 
-      expect(report.to_csv.count).to eq(17 + 5 * 7)
+      expect(report.to_csv.count).to eq(27 + 5 * 7)
     end
   end
 end

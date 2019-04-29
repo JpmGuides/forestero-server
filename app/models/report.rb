@@ -76,11 +76,11 @@ class Report < ApplicationRecord
   def self.to_csv(date = DateTime.yesterday, options = {})
     header_names = [
       'date', 'site_reference', 'country', 'site_longitude', 'site_latitude', 'site_age', 'device', 'humidity', 'canopy', 'leaf', 'maintenance', 'flowers', 'bp', 'wilt', 'harvesting', 'drying', 'fertilizer',
-      'tree1_tiny', 'tree1_small', 'tree1_large', 'tree1_mature', 'tree1_rife', 'tree1_damaged', 'tree1_blackpod',
-      'tree2_tiny', 'tree2_small', 'tree2_large', 'tree2_mature', 'tree2_rife', 'tree2_damaged', 'tree2_blackpod',
-      'tree3_tiny', 'tree3_small', 'tree3_large', 'tree3_mature', 'tree3_rife', 'tree3_damaged', 'tree3_blackpod',
-      'tree4_tiny', 'tree4_small', 'tree4_large', 'tree4_mature', 'tree4_rife', 'tree4_damaged', 'tree4_blackpod',
-      'tree5_tiny', 'tree5_small', 'tree5_large', 'tree5_mature', 'tree5_rife', 'tree5_damaged', 'tree5_blackpod'
+      'tree1_tiny', 'tree1_small', 'tree1_small2', 'tree1_large', 'tree1_mature', 'tree1_rife', 'tree1_infest', 'tree1_force_r', 'tree1_blackpod',
+      'tree2_tiny', 'tree2_small', 'tree2_small2', 'tree2_large', 'tree2_mature', 'tree2_rife', 'tree2_infest', 'tree2_force_r', 'tree2_blackpod',
+      'tree3_tiny', 'tree3_small', 'tree3_small2', 'tree3_large', 'tree3_mature', 'tree3_rife', 'tree3_infest', 'tree3_force_r', 'tree3_blackpod',
+      'tree4_tiny', 'tree4_small', 'tree4_small2', 'tree4_large', 'tree4_mature', 'tree4_rife', 'tree4_infest', 'tree4_force_r', 'tree4_blackpod',
+      'tree5_tiny', 'tree5_small', 'tree5_small2', 'tree5_large', 'tree5_mature', 'tree5_rife', 'tree5_infest', 'tree5_force_r', 'tree5_blackpod'
     ]
 
     CSV.generate(options) do |csv|
