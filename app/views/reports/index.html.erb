@@ -45,10 +45,7 @@
             <% end %>
           </tr>
           <% if [:nb_sites, :flowers, :total_pods].include?(attribute) %>
-              </tbody>
-            </table>
-            <table class="table table-striped table-hover">
-              <tbody>
+            <tr style="background-color: #fff;"><td colspan="<%= @resumes.count + 1 %>"></td></tr>
           <% end %>
         <% end %>
       </tbody>

@@ -98,7 +98,7 @@ class Resume
   end
 
   def total_pods
-    @total_pods ||= tiny + small + large + mature + ripe + infest + force_r + blackpod
+    @total_pods ||= tiny + small2 + small + large + mature + ripe + infest + force_r + blackpod
   end
 
   def bp
